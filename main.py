@@ -602,7 +602,12 @@ class BytenutRenewal:
                 try:
                     # --- 登录 ---
                     sb.uc_open_with_reconnect(URL_LOGIN_PANEL, reconnect_time=10)
-                    time.sleep(8)
+                    time.sleep(10)
+                    try:
+                        sb.uc_gui_handle_captcha()
+                        time.sleep(3)
+                    except Exception:
+                        pass
                     # ===== FIX: Support both Username placeholder and generic text input =====
                     try:
                         sb.wait_for_element_visible('input[placeholder="Username"]', timeout=15)
